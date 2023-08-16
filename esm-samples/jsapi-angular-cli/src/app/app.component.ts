@@ -11,6 +11,7 @@ import MapView from '@arcgis/core/views/MapView';
 import Bookmarks from '@arcgis/core/widgets/Bookmarks';
 import Expand from '@arcgis/core/widgets/Expand';
 import Editor from '@arcgis/core/widgets/Editor';
+import '@esri/calcite-components/dist/components/calcite-button';
 
 @Component({
   selector: 'app-root',
@@ -50,6 +51,10 @@ export class AppComponent implements OnInit, OnDestroy {
       expanded: true,
     });
 
+    const button = document.createElement('calcite-button');
+    // set the button's label
+    button.innerText = 'Calcite Button';
+
     const editor = new Editor({
       view: view
     });
@@ -58,6 +63,8 @@ export class AppComponent implements OnInit, OnDestroy {
     view.ui.add(bkExpand, 'bottom-left');
     // Add the widget to the view
     view.ui.add(editor, "top-right");
+    // add the button to the view
+    view.ui.add(button, 'bottom-right');
 
     // bonus - how many bookmarks in the webmap?
     webmap.when(() => {
